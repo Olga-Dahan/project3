@@ -30,7 +30,9 @@ export default async function authentication (req: Request, res: Response, next:
         // so instead of using the jwt for the user record
         // we use only user.id to fetch the user again from the database
         const { user } = verify(token, config.get<string>('app.jwt.secret')) as JwtPayload;
-        req.user = await getModel().getOne(user.id);
+
+        req.user = await getModel().getOne(user.email);
+
         return next();
     } catch (err) {
         return next(createHttpError(Unauthorized(err.message || err)));

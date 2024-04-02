@@ -15,26 +15,17 @@ function Routing(): JSX.Element {
         <Routes>
 
             <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Navigate to="/" />} />
 
 
+            <Route path="/vacations" element={<Vacations />} />
 
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Navigate to="/" />} />
-            {/* <Route path="/home" element={<Home />} /> */}
+            <Route path="/vacations-admin" element={<VacationsAdmin />} />
+            <Route path="/vacations-admin/new" element={<AddVacation />} />
+            <Route path="/vacations-admin/edit/:vacationId" element={<EditVacation />} />
+            <Route path="/vacations-report" element={<ReportVacation />} />
 
-            <Route path="/products/details/:productId" element={<ProductDetails />} />
-            <Route path="/categories/details/:categoryId" element={<Details />} />
-
-            <Route path="/products/new" element={<AddProduct />} />
-
-            <Route path="/products/edit/:productId" element={<EditProduct />} />
-
-            <Route path="/products" element={<Products />} />
-
-            <Route path="/categories" element={<CategoriesList />} />
-
-            <Route path="/about" element={<About />} />
 
             <Route path="*" element={<Page404 />} />
 

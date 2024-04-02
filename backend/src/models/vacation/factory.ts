@@ -1,6 +1,6 @@
 import Model from "./model";
-import product from "./mysql";
+import vacation from "./mysql";
 
 export default function getModel(): Model {
-    return product;
+    return vacation;
 }

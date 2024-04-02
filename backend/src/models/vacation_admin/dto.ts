@@ -2,9 +2,11 @@ import { UploadedFile } from "express-fileupload";
 
 export default interface DTO {
     id: number,
-    name: string,
+    destination: string,
+    description:string,
+    startDate: Date,
+    endDate: Date,
     price: number,
-    stock: number,
     image: UploadedFile,
     imageName: string,
 }

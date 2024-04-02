@@ -1,23 +1,23 @@
 {
     "app": {
-        "name": "northwind",
-        "port": 8082,
+        "name": "project3",
+        "port": 8080,
         "protocol": "http",
         "host": "localhost",
-        "secret": "MyBloodyValentine",
+        "secret": "Caudalie",
         "jwt": {
             "expires": "3h",
-            "secret": "LinkinPark"
+            "secret": "Evanescence"
         },
         "images": {
-            "path": "C:\\northwind-images"
+            "path": "C:\\project3-images"
         }
     },
     "mysql": {
         "host": "localhost",
         "user": "root",
         "password": "",
-        "database": "northwind",
+        "database": "project3",
         "port": 3306,
         "connectionLimit": 10
     }

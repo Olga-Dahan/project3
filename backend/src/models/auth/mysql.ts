@@ -8,32 +8,32 @@ import { hashPassword } from "../../utils/crypto";
 
 class User implements Model {
 
-    public async getOne(id: number): Promise<UserDTO> {
-        // id = '"3"; drop table users;' 
+    public async getOne(email: string): Promise<UserDTO> {
         const user = (await query(`
-            SELECT  userId AS id,
-                    username as email,
-                    password,
+            SELECT  id,
                     firstName,
                     lastName,
+                    email,
+                    password,
                     roleId
             FROM    users  
-            WHERE   userId = ?
-        `, [id]))[0];
+            WHERE   email = ?
+        `, [email]))[0];
         return user;
     }
 
     public async login(credentials: CredentialsDTO): Promise<UserDTO> {
         const { email, password } = credentials;
+
         const user = (await query(`
-            SELECT  userId AS id,
-                    username as email,
-                    password,
+            SELECT  id,
                     firstName,
                     lastName,
+                    email,
+                    password,
                     roleId
             FROM    users  
-            WHERE   username = ?
+            WHERE   email = ?
             AND     password = ?
         `,[ email, hashPassword(password, config.get<string>('app.secret'))]))[0];
         return user;
@@ -41,11 +41,11 @@ class User implements Model {
 
     public async signup(user: UserDTO): Promise<UserDTO> {
         const { firstName, lastName, email, password } = user;
-        const result: OkPacketParams = await query(`
-            INSERT INTO users(firstName, lastName, username, password, roleId) 
+        await query(`
+            INSERT INTO users(firstName, lastName, email, password, roleId) 
             VALUES(?,?,?,?,?) 
         `, [firstName, lastName, email, hashPassword(password, config.get<string>('app.secret')), Roles.USER]);
-        return this.getOne(result.insertId);
+        return this.getOne(email);
     }
 }
 

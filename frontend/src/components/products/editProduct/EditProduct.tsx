@@ -46,10 +46,10 @@ function EditProduct(): JSX.Element {
     }, [])
 
     async function submitProductData(product: Product) {
-        console.log(product);
+        // console.log(product);
         try {
             product.image = (product.image as unknown as FileList)[0];
-            console.log(product.image)
+            // console.log(product.image)
             product.id = productId;
             const updatedProduct = await productsService.editProduct(product);
             // alert(`updated a product with id ${updatedProduct.id}`)

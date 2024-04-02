@@ -6,8 +6,9 @@ import { promisify } from "util";
 import config from "config";
 
 export default async function uploadImage(req: Request, res: Response, next: NextFunction) {
+
     if(!req.body.image) return next();
-    
+
     const image = req.body.image as UploadedFile;
 
     // tofu.jpg

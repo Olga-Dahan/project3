@@ -1,9 +1,9 @@
 class AppConfig {
-    public productsUrl = 'http://localhost:8082/api/products';
-    public employeesUrl = 'http://localhost:8082/api/employees';
-    public signupUrl = 'http://localhost:8082/api/register';
-    public loginUrl = 'http://localhost:8082/api/login';
-    public categoriesUrl = 'http://localhost:8082/api/categories';
+    public baseUrl = 'http://localhost:8080/api';
+    public vacationsUrl = `${this.baseUrl}/vacations`;
+    public vacationsAdminUrl = `${this.baseUrl}/vacations-admin`;
+    public signupUrl = `${this.baseUrl}/register`;
+    public loginUrl = `${this.baseUrl}/login`;
     public successNotificationDuration = 2000;
     public errorNotificationDuration = 6000;
 }

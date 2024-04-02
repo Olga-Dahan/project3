@@ -9,6 +9,7 @@ import createHttpError, { Unauthorized } from "http-errors";
 export const signup = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const user = await getModel().signup(req.body);
+        delete user.password;
         const jwt = generateJWT(user, config.get<string>('app.jwt.secret'), config.get<string>('app.jwt.expires'))
         res.status(StatusCodes.CREATED).json({ jwt });
     } catch (err) {
@@ -22,6 +23,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const user = await getModel().login(req.body);
         if (!user) return next(createHttpError(Unauthorized('did not find such a combination of username and password')))
+        delete user.password;
         const jwt = generateJWT(user, config.get<string>('app.jwt.secret'), config.get<string>('app.jwt.expires'))
         res.json({ jwt });
     } catch (err) {
