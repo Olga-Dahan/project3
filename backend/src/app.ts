@@ -30,12 +30,11 @@ server.use(stripTags);
 server.use(expressFileUpload())
 
 server.use('/api', authRouter)
-// server.use(stripTags);
+server.use(stripTags);
 server.use('/api/vacations', vacationsRouter)
 server.use('/api/vacations-admin', vacationsAdminRouter)
 
 server.use('/images', express.static(path.resolve(config.get<string>('app.images.path'))))
-server.use('/css', express.static('src/assets/css'))
 
 // special middleware for not found error
 server.use(notFound)

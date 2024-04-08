@@ -1,0 +1,51 @@
+.VacationsListUser {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 80% 10%;
+} 
+
+.VacationsListUser main {
+    text-align: center;
+    overflow: auto;
+
+} 
+
+.VacationsListUser footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+} 
+
+.VacationsListUser > header {
+    margin-right: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.VacationsListUser > header > a {
+    margin-left: 4px;
+}
+
+.VacationsListUser label{
+    font-size: large;
+    color: #1d3124;
+}
+
+.VacationsListUser a:visited{
+    color: #9f496e;
+}
+
+.VacationsListUser a:hover{
+    color: #7a09af;
+}
+
+.VacationsListUser a {
+    color: #1d3124;
+}
+
+.VacationsListUser * {
+    box-sizing: border-box;
+}

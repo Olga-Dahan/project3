@@ -1,7 +1,6 @@
 import Model from "./model";
 import CredentialsDTO from './credentials-dto';
 import UserDTO, { Roles } from './user-dto';
-import { OkPacketParams } from "mysql2";
 import query from "../../db/mysql";
 import config from "config";
 import { hashPassword } from "../../utils/crypto";

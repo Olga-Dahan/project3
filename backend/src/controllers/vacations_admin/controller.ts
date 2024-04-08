@@ -7,6 +7,7 @@ import { json2csv } from 'json-2-csv';
 import DTO from "../../models/vacation_admin/dto";
 
 
+
 function convertVacationToImageUrl(vacation: DTO) {
     const vacationWithImageUrl = {
         ...vacation,
@@ -44,8 +45,7 @@ export const getVacationsFollowers = async (req: Request, res: Response, next: N
 
 export const getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const offset = +req.params.offset;
-        const vacations = await getModel().getAll(offset);
+        const vacations = await getModel().getAll();
         res.json(vacations.map(convertVacationToImageUrl));
     } catch (err) {
         next(err);
@@ -74,7 +74,7 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
 export const update = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const id = +req.params.id;
-        const updatedVacation = {id, ...req.body}
+        const updatedVacation = { id, ...req.body }
         const vacation = await getModel().update(updatedVacation);
         res.json(convertVacationToImageUrl(vacation));
     } catch (err) {
@@ -87,7 +87,7 @@ export const patch = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const id = +req.params.id;
         const existingVacation = await getModel().getOne(id);
-        const updatedVacation = {...existingVacation, ...req.body};
+        const updatedVacation = { ...existingVacation, ...req.body };
         const vacation = await getModel().update(updatedVacation);
         res.json(convertVacationToImageUrl(vacation));
     } catch (err) {
@@ -98,7 +98,7 @@ export const patch = async (req: Request, res: Response, next: NextFunction) => 
 export const remove = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const isDeleted = await getModel().delete(+req.params.id)
-        if(!isDeleted) return next(createHttpError(NotFound(`tried to delete nonexisting vacation with id ${req.params.id}`)));
+        if (!isDeleted) return next(createHttpError(NotFound(`tried to delete nonexisting vacation with id ${req.params.id}`)));
         res.sendStatus(StatusCodes.NO_CONTENT)
     } catch (err) {
         next(err)

@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/joy": "^5.0.0-beta.32",
+    "@mui/material": "^5.15.14",
+    "@mui/system": "^5.15.15",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,13 +17,16 @@
     "@types/react-dom": "^18.2.17",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.2",
+    "date-fns": "^3.6.0",
     "jwt-decode": "^4.0.0",
     "notyf": "^3.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
+    "react-icons": "^5.0.1",
     "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
+    "recharts": "^2.12.3",
     "redux": "^5.0.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -36,7 +44,7 @@
     ]
   },
   "browserslist": {
-    "production": [
+    "vacationion": [
       ">0.2%",
       "not dead",
       "not op_mini all"
@@ -46,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/recharts": "^1.8.29"
   }
 }

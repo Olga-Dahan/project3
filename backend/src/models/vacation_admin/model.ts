@@ -3,7 +3,7 @@ import DTO_CSV from "./dtoCSV";
 
 export default interface Model {
     getVacationsFollowers(): Promise<DTO_CSV[]>;
-    getAll(offset: number): Promise<DTO[]>;
+    getAll(): Promise<DTO[]>;
     getOne(id: number): Promise<DTO>;
     add(vacation: DTO): Promise<DTO>;
     update(vacation: DTO): Promise<DTO>;

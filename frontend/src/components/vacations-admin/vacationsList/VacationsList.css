@@ -1,0 +1,18 @@
+
+.VacationsList {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 85% 15%;
+} 
+
+.VacationsList main{
+    text-align: center;
+    overflow: auto;
+} 
+
+.VacationsList footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+} 

@@ -8,7 +8,7 @@ export default interface DTO {
     endDate: Date,
     price: number,
     numberOfFollowers: number,
-    iAmFollowing: boolean,
+    iAmFollowing: number,
     image: UploadedFile,
     imageName: string
 

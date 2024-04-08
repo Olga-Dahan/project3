@@ -10,8 +10,7 @@ import enforceAdmin from '../middlewares/enforce-admin';
 const router = Router();
 router.use(enforceAdmin)
 
-
-router.get('/:offset([0-9]+)', getAll)
+router.get('/', getAll)
 router.post('/add', addImageToBody, validate(addVacationValidator) ,uploadImage ,add)
 router.put('/:id([0-9]+)', addImageToBody, validate(updateVacationValidator), uploadImage ,update)
 router.patch('/:id([0-9]+)', addImageToBody, validate(patchVacationValidator), uploadImage, patch)

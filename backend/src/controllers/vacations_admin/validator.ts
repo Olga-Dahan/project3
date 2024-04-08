@@ -5,8 +5,8 @@ export const addVacationValidator = Joi.object<DTO>({
     id: Joi.number().optional(),
     destination: Joi.string().min(4).required(),
     description: Joi.string().min(4).required(),
-    startDate: Joi.date().required(),
-    endDate: Joi.date().greater(Joi.ref('startDate')).required(),
+    startDate: Joi.date().greater("now").required(),
+    endDate: Joi.date().greater("now").greater(Joi.ref('startDate')).required(),
     price: Joi.number().min(1).max(10000).required(),
     image: Joi.object({
         mimetype: Joi.string().valid('image/jpg', 'image/jpeg', 'image/png'),

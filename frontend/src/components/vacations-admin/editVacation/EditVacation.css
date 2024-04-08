@@ -1,0 +1,38 @@
+.EditVacation {
+    width: 250px;
+    border: 1px solid;
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 10px 10px 10px;
+    border-radius: 10px;
+    background-color: #94a7ae ;
+
+}
+
+
+.EditVacation input, textarea{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2%;
+}
+
+.EditVacation  textarea{
+    height: 76px;
+}
+
+.EditVacation button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 5%;
+    margin-top: 5%;
+
+}
+
+.EditVacation .error {
+    color: red;
+}
+
+.EditVacation img {
+    width: 250px;
+}

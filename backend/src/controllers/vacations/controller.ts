@@ -21,13 +21,11 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
         const isFollowing: boolean = ("true" === req.query.isFollowing);
         const didntStart: boolean = ("true" === req.query.didntStart);
         const onGoing: boolean = ("true" === req.query.onGoing);
-        const offset: number = +req.query.offset;
 
         const vacations = await getModel().getAll(id, {
             isFollowing,
             didntStart,
-            onGoing,
-            offset
+            onGoing
         });
         res.json(vacations.map(convertVacationToImageUrl));
     } catch (err) {
@@ -41,15 +39,15 @@ export const followUnfollow = async (req: Request, res: Response, next: NextFunc
     try {
         const userId = req.params.userId;
         const vacationId = +req.params.vacationId;
-
         const checkIfFollow = await getModel().checkIfFollow(userId, vacationId);
+        
         if (checkIfFollow.length === 0) {
             const result = await getModel().follow(userId, vacationId);
             res.status(StatusCodes.CREATED).json(result[0]);
         }
         else {
             const isUnfollowed = await getModel().unfollow(userId, vacationId);
-            if(!isUnfollowed) return next(createHttpError(NotFound(`tried to unfollow vacation with id ${vacationId}`)));
+            if (!isUnfollowed) return next(createHttpError(NotFound(`tried to unfollow vacation with id ${vacationId}`)));
             res.sendStatus(StatusCodes.NO_CONTENT);
         }
     } catch (err) {

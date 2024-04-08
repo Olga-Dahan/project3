@@ -1,68 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./AuthMenu.css";
 import { authStore } from "../../../redux/AuthState";
-import { NavLink, useNavigate } from "react-router-dom";
-import Signup from "../../../models/SignupModel";
+import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import auth from "../../../services/Auth";
-import notify from "../../../services/Notify";
 
 function AuthMenu(): JSX.Element {
 
     type User = {
         firstName: string,
-        lastName: string
+        lastName: string,
+        roleId: number
     };
 
-    const [user, setUser] = useState<User>();
+    enum Roles {
+        ADMIN = 1,
+        USER = 2
+    }
+
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        // init the token the 1st time the component is mounted
         const token = authStore.getState().token;
         if (token) {
             const user = jwtDecode<{ user: User }>(token).user;
-            setUser(user);
+            if (user.roleId === Roles.USER)
+                navigate('/vacations');
+            if (user.roleId === Roles.ADMIN)
+                navigate('/vacations-admin');
+        }
+        if (!token) {
+            navigate('/login');
         }
 
-        // subscribe to changes
         const unsubscribe = authStore.subscribe(() => {
+            console.log("unsubscribe AuthMenu")
             const token = authStore.getState().token;
             if (token) {
                 const user = jwtDecode<{ user: User }>(token).user;
-                console.log(user)
-                setUser(user);
             } else {
-                setUser(undefined)
+                // setUser(undefined)
             }
         });
 
         return unsubscribe;
     }, [])
 
-    function logout() {
-        auth.logout();
-        notify.success('logged out successfully');
-    }
 
 
     return (
         <div className="AuthMenu">
-            {!user &&
-                <div>
-                    <span>Hello Guest | </span>
-                    <NavLink to="/signup">Sign Up</NavLink>
-                    <span> | </span>
-                    <NavLink to="/login">Login</NavLink>
-                </div>
-            }
-            {user &&
-                <div>
-                    <span>Hello {user.firstName} {user.lastName} | </span>
-                    <NavLink to="/home" onClick={logout}>Logout</NavLink>
-                </div>
-            }
+
         </div>
     );
 }

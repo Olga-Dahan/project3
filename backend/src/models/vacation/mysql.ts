@@ -36,19 +36,16 @@ class Vacation implements Model {
             sql += 'AND v.startDate > NOW()'
         }
 
-        if (query_params.onGoing === true)  {
+        if (query_params.onGoing === true) {
             sql += 'AND v.startDate < NOW() AND v.endDate > NOW()'
         }
 
         sql += `GROUP BY v.id
                 ORDER BY v.startDate
-                LIMIT ?,10
         `
-        sqlParams.push(query_params.offset)
-
         const vacations = await query(sql, sqlParams);
-        return vacations;
 
+        return vacations;
     }
 
     public async checkIfFollow(userId: string, vacationId: number): Promise<DTO_VACATION_FOLLOW[]> {
@@ -62,7 +59,7 @@ class Vacation implements Model {
         return vacations;
     }
 
-    public async follow (userId: string, vacationId: number): Promise<DTO_VACATION_FOLLOW[]> {
+    public async follow(userId: string, vacationId: number): Promise<DTO_VACATION_FOLLOW[]> {
         await query(`
             INSERT INTO followers(userId, vacationId) 
             VALUES(?,?) 

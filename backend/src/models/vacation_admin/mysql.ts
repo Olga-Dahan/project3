@@ -7,6 +7,21 @@ import Model from "./model";
 
 class Vacation implements Model {
 
+    public async getAll_WithoutLimit(): Promise<DTO[]> {
+        const vacations = await query(`
+        SELECT	id, 
+                destination, 
+                description,
+                startDate,
+                endDate,
+                price,
+                imageName
+        FROM	vacations
+        ORDER BY startDate
+        `)
+        return vacations;
+    }
+
     public async getVacationsFollowers(): Promise<DTO_CSV[]> {
         const vacations = await query(`
             SELECT	v.destination, 
@@ -18,7 +33,7 @@ class Vacation implements Model {
         return vacations;
     }
 
-    public async getAll(offset: number): Promise<DTO[]> {
+    public async getAll(): Promise<DTO[]> {
         const vacations = await query(`
             SELECT	id, 
                     destination, 
@@ -29,8 +44,7 @@ class Vacation implements Model {
                     imageName
             FROM	vacations 
             ORDER BY startDate
-            LIMIT ?,10
-        `, [offset])
+        `)
 
         return vacations;
     }
@@ -51,7 +65,8 @@ class Vacation implements Model {
     }
 
     public async add(vacation: DTO): Promise<DTO> {
-        const { destination, description, startDate, endDate, price, imageName } = vacation;
+        let { destination, description, startDate, endDate, price, imageName } = vacation;
+        if (imageName === undefined) imageName = "";
         const result: OkPacketParams = await query(`
             INSERT INTO vacations(destination, description, startDate, endDate, price, imageName) 
             VALUES(?,?,?,?,?,?) 
@@ -60,7 +75,8 @@ class Vacation implements Model {
     }
 
     public async update(vacation: DTO): Promise<DTO> {
-        const { id, destination, description, startDate, endDate, price, imageName } = vacation;
+        let { id, destination, description, startDate, endDate, price, imageName } = vacation;
+        if (imageName === undefined) imageName = "";
         await query(`
             UPDATE  vacations
             SET     destination = ?, 

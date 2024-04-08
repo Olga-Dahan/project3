@@ -1,0 +1,45 @@
+
+.VacationCardUser {
+    display: inline-flex;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+.VacationCardUser .following:hover{
+    background-color: rgb(236, 139, 158);
+}
+
+.VacationCardUser .not_following:hover{
+    background-color: rgb(102, 96, 96);
+}
+
+.VacationCardUser  .following {
+    color: black;
+    background-color: pink;
+}
+
+.VacationCardUser  .not_following {
+    color: black;
+    background-color: rgb(172, 169, 169);
+}
+
+.VacationCardUser p {
+    color: black;
+}
+
+.VacationCardUser .price {
+    background-color: rgb(131, 191, 231);
+    color: white;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 5px;
+    width: 313px;
+}
+
+.VacationCardUser .cardContent {
+    position: relative;
+}

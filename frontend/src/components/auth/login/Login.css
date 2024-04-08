@@ -6,11 +6,23 @@
     padding: 20px;
     box-shadow: 10px 10px 10px;
     border-radius: 10px;
+    background-color: #94a7ae ;
 }
 
-.Login input,
+.Login input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 2%;
+}
+
 .Login button {
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin-bottom: 5%;
+    margin-top: 5%;
+
+}
+
+.Login .error {
+    color: red;
 }

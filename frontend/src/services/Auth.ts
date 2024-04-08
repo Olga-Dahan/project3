@@ -9,30 +9,25 @@ class Auth {
         const response = await axios.post<{jwt: string}>(appConfig.signupUrl, signup);
         const token = response.data.jwt;
 
-        // redux
         const action: AuthAction = {
             type: AuthActionType.Signup,
             payload: token
         }
 
-        // now all is left to do, is to send this action to redux
         authStore.dispatch(action);
 
         return token;
     }
 
     public async login(login: Login): Promise<string> {
-        // login actions work in HTTP POST instead of GET
         const response = await axios.post<{jwt: string}>(appConfig.loginUrl, login);
         const token = response.data.jwt;
 
-        // redux
         const action: AuthAction = {
             type: AuthActionType.Login,
             payload: token
         }
 
-        // now all is left to do, is to send this action to redux
         authStore.dispatch(action);
 
         return token;
@@ -43,8 +38,6 @@ class Auth {
             type: AuthActionType.Logout,
             payload: null
         }
-
-        // now all is left to do, is to send this action to redux
         authStore.dispatch(action);
     }
 

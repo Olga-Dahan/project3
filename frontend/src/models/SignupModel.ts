@@ -5,4 +5,5 @@ class Signup extends Login {
     public lastName?: string;
 }
 
+
 export default Signup;

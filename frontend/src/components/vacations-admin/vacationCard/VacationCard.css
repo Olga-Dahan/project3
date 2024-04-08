@@ -1,0 +1,43 @@
+
+
+.VacationCard {
+    display: inline-flex;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+.VacationCard button:hover{
+    background-color: rgb(146, 140, 140);
+}
+
+.VacationCard a:visited{
+    color: rgb(49, 48, 48);
+}
+
+.VacationCard  button {
+    color: rgb(49, 48, 48);
+    background-color: rgb(230, 225, 225);
+    width: 80px;
+    border-radius: 20px;
+}
+
+.VacationCard p {
+    color: black;
+}
+
+.VacationCard .price {
+    background-color: rgb(131, 191, 231);
+    color: white;
+    height: 40px;
+    padding-top: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 5px;
+    width: 313px;
+}
+
+.VacationCard .cardContent {
+    position: relative;
+}
