@@ -8,7 +8,6 @@ import config from 'config';
 import { notFound } from "./middlewares/not-found";
 import { errorHandler } from "./middlewares/error-handler";
 import { errorLogger } from "./middlewares/error-logger";
-import { pagerDuty } from "./middlewares/pager-duty";
 import userLogger from "./middlewares/user-logger";
 import authentication from "./middlewares/authentication";
 import enforceAuth from "./middlewares/enforce-auth";
@@ -30,7 +29,6 @@ server.use(stripTags);
 server.use(expressFileUpload())
 
 server.use('/api', authRouter)
-server.use(stripTags);
 server.use('/api/vacations', vacationsRouter)
 server.use('/api/vacations-admin', vacationsAdminRouter)
 
@@ -41,7 +39,6 @@ server.use(notFound)
 
 // error middlewares
 server.use(errorLogger)
-server.use(pagerDuty)
 server.use(errorHandler)
 
 export default server;

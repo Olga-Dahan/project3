@@ -1,0 +1,4 @@
+{"level":"error","message":"You can't select past date!"}
+{"level":"error","message":"You are already signed up!"}
+{"level":"error","message":"The email is invalid!"}
+{"level":"error","message":"End date must be later than start date!"}

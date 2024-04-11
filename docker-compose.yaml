@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: vacations-backend
+    ports:
+      - 3001:3001
+    environment:
+      - NODE_ENV=compose
+    #build: ./backend
+    image: olgadahan/vacations-backend:1.0
+  frontend:
+    depends_on:
+      - backend
+    container_name: vacations-frontend
+    ports:
+      - 80:80
+    environment:
+      - IO_SERVER=http://ec2-16-170-245-15.eu-north-1.compute.amazonaws.com
+    #build: ./frontend
+    image: olgadahan/vacations-frontend:1.0
+
+volumes:

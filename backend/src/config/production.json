@@ -1,5 +1,14 @@
 {
     "app": {
         "port": 80
+    },
+    "mysql": {
+        "host": "",
+        "user": "",
+        "password": "",
+        "database": "",
+        "port": 3307,
+        "connectionLimit": 10
     }
+
 }
