@@ -22,7 +22,7 @@ COPY ./ ./
 RUN npm run build
 
 # We want to expose the port the app will listen to
-EXPOSE 3001
+EXPOSE 8080
 
 # Now I want to provide some command to start the app 
 # in Node.js we usually use "npm start" for this

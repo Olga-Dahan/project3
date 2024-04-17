@@ -4,7 +4,7 @@ import Vacation from "../../../models/Vacation_admin";
 import vacationsService from "../../../services/Vacations_admin";
 import { NavLink, useNavigate } from "react-router-dom";
 import notify from "../../../services/Notify";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { authStore } from "../../../redux/AuthState";
 import { jwtDecode } from "jwt-decode";
 
@@ -26,6 +26,7 @@ function AddVacation(): JSX.Element {
         USER = 2
     }
 
+    const [endDate, setEndDate] = useState<Date>(new Date());
 
     function ImageWatched({ control }: { control: Control<Vacation> }) {
         const imageSrc = useWatch({
@@ -130,7 +131,8 @@ function AddVacation(): JSX.Element {
                     required: {
                         value: true,
                         message: 'start date is a required field'
-                    }
+                    },
+                    onChange: (e) => {setEndDate(e.target.value)}
                 })} />
                 <span className="error">{formState.errors.startDate?.message}</span>
                 <br></br>
@@ -141,8 +143,14 @@ function AddVacation(): JSX.Element {
                     required: {
                         value: true,
                         message: 'end date is a required field'
+                    },
+                    min: {
+                        value: endDate as unknown as string,
+                        message: 'end date have to be later start date'
                     }
-                })} />
+                })} 
+                min={endDate as unknown as string}
+                />
                 <span className="error">{formState.errors.endDate?.message}</span>
                 <br></br>
                 <br></br>

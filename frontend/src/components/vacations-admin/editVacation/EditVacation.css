@@ -11,11 +11,12 @@
 }
 
 
-.EditVacation input, textarea{
+.EditVacation input, textarea {
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 2%;
 }
+
 
 .EditVacation  textarea{
     height: 76px;

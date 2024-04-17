@@ -1,23 +1,34 @@
 version: '3.8'
 
 services:
-  backend:
-    container_name: vacations-backend
+  database:
+    container_name: project3-database
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_TCP_PORT=3306
+      - MYSQL_DATABASE=project3
     ports:
-      - 3001:3001
+      - 3306:3306
+    # image: olgadahan/project3-database:1.0
+    build: ./database 
+    volumes:
+      - project3-database:/var/lib/mysql
+  backend:
+    depends_on:
+      - database
+    container_name: project3-backend
+    ports:
+      - 8080:8080
     environment:
       - NODE_ENV=compose
-    #build: ./backend
-    image: olgadahan/vacations-backend:1.0
+    build: ./backend
   frontend:
     depends_on:
       - backend
-    container_name: vacations-frontend
+    container_name: project3-frontend
     ports:
-      - 80:80
-    environment:
-      - IO_SERVER=http://ec2-16-170-245-15.eu-north-1.compute.amazonaws.com
-    #build: ./frontend
-    image: olgadahan/vacations-frontend:1.0
+      - 3000:80
+    build: ./frontend
 
 volumes:
+  project3-database:

@@ -7,6 +7,7 @@ import Vacation from "../../../models/Vacation_admin";
 import notify from "../../../services/Notify";
 import { authStore } from "../../../redux/AuthState";
 import { jwtDecode } from "jwt-decode";
+import { format } from "date-fns";
 
 type User = {
     id: string,
@@ -30,6 +31,8 @@ function EditVacation(): JSX.Element {
     const navigate = useNavigate();
 
     const [src, setSrc] = useState<string>('');
+    const [endDate, setEndDate] = useState<Date>();
+
 
     function ImageWatched({ control }: { control: Control<Vacation> }) {
         const imageSrc = useWatch({
@@ -88,8 +91,10 @@ function EditVacation(): JSX.Element {
             .then(vacationFromServer => {
                 setValue('destination', vacationFromServer?.destination);
                 setValue('description', vacationFromServer?.description);
-                setValue('startDate', vacationFromServer?.startDate);
-                setValue('endDate', vacationFromServer?.endDate);
+                setValue('startDate', format(vacationFromServer?.startDate!, "yyyy-MM-dd") as unknown as Date);
+                setEndDate(format(vacationFromServer?.startDate!, "yyyy-MM-dd") as unknown as Date)
+
+                setValue('endDate', format(vacationFromServer?.endDate!, "yyyy-MM-dd") as unknown as Date);
                 setValue('price', vacationFromServer?.price);
                 setSrc(vacationFromServer?.imageUrl || '')
             })
@@ -105,6 +110,7 @@ function EditVacation(): JSX.Element {
             vacation.image = (vacation.image as unknown as FileList)[0];
             vacation.id = vacationId;
             const updatedVacation = await vacationsService.editVacation(vacation);
+
             notify.success(`updated a vacation with id ${updatedVacation.id}`)
             navigate(`/vacations-admin`);
 
@@ -139,13 +145,15 @@ function EditVacation(): JSX.Element {
                 <span className="error">{formState.errors.description?.message}</span>
                 <br></br>
                 <br></br>
+        
 
                 <label>start on</label>
                 <input type="date" {...register('startDate', {
                     required: {
                         value: true,
                         message: 'start date is a required field'
-                    }
+                    },
+                    onChange: (e) => {setEndDate(e.target.value)}
                 })} />
                 <span className="error">{formState.errors.startDate?.message}</span>
                 <br></br>
@@ -156,8 +164,14 @@ function EditVacation(): JSX.Element {
                     required: {
                         value: true,
                         message: 'end date is a required field'
+                    },
+                    min: {
+                        value: endDate as unknown as string,
+                        message: 'end date have to be later start date'
                     }
-                })} />
+                })}
+                min={endDate as unknown as string}
+                />
                 <span className="error">{formState.errors.endDate?.message}</span>
                 <br></br>
                 <br></br>

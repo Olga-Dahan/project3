@@ -89,6 +89,7 @@ export const patch = async (req: Request, res: Response, next: NextFunction) => 
         const existingVacation = await getModel().getOne(id);
         const updatedVacation = { ...existingVacation, ...req.body };
         const vacation = await getModel().update(updatedVacation);
+
         res.json(convertVacationToImageUrl(vacation));
     } catch (err) {
         next(err)

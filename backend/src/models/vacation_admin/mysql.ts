@@ -7,21 +7,6 @@ import Model from "./model";
 
 class Vacation implements Model {
 
-    public async getAll_WithoutLimit(): Promise<DTO[]> {
-        const vacations = await query(`
-        SELECT	id, 
-                destination, 
-                description,
-                startDate,
-                endDate,
-                price,
-                imageName
-        FROM	vacations
-        ORDER BY startDate
-        `)
-        return vacations;
-    }
-
     public async getVacationsFollowers(): Promise<DTO_CSV[]> {
         const vacations = await query(`
             SELECT	v.destination, 
@@ -61,6 +46,7 @@ class Vacation implements Model {
             FROM	vacations 
             WHERE id =?
         `, [id]);
+
         return vacations[0];
     }
 
@@ -87,6 +73,7 @@ class Vacation implements Model {
                     imageName = ?
             WHERE   id = ?
         `, [destination, description, startDate , endDate , price, imageName, id]);
+
         return this.getOne(id);
     }
 

@@ -15,7 +15,7 @@ interface VacationCardProps {
 }
 
 function VacationCard(props: VacationCardProps): JSX.Element {
-
+    
     function deleteMe() {
         if (!props.vacation.id) return;
         props.deleteFunction(props.vacation.id)

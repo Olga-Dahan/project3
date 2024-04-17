@@ -29,7 +29,7 @@ class Vacations {
     }
 
     public async getOne(id: number): Promise<Vacation_admin | undefined> {
-
+        
         let vacations = vacationsStore.getState().vacations;
 
         let vacation = vacations.find(v => v.id === id)
@@ -88,12 +88,12 @@ class Vacations {
     }
 
     public async editVacation(vacation: Vacation_admin): Promise<Vacation_admin> {
+
         const config = {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         }
-
 
         const response = await axios.patch<Vacation_admin>(appConfig.vacationsAdminUrl + `/${vacation.id}`, vacation, config);
 
