@@ -10,7 +10,7 @@
             "secret": "Evanescence"
         },
         "images": {
-            "path": "C:\\project3-images"
+            "path": "C:/Users/olgar/OneDrive/Рабочий стол/Project3/saved_images"
         }
     },
     "mysql": {
