@@ -9,3 +9,5 @@
 {"level":"error","message":"End date must be later than start date!"}
 {"level":"error","message":"jwt expired"}
 {"level":"error","message":"You are already signed up!"}
+{"level":"error","message":"Unauthorized"}
+{"level":"error","message":"Unauthorized"}

@@ -137,37 +137,6 @@
 			"response": []
 		},
 		{
-			"name": "get vacations-admin without limit",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNDFiMTgxNTUtZjA3OS0xMWVlLTg5MTMtNDg5ZWJkZjU4Njk3IiwiZmlyc3ROYW1lIjoiT2xnYSIsImxhc3ROYW1lIjoiRGFoYW4iLCJlbWFpbCI6Im9sZ2FAZ21haWwuY29tIiwicm9sZUlkIjoxfSwiaWF0IjoxNzEyMTQ5NDE0LCJleHAiOjE3MTIxNjAyMTR9.N_DnwSayhSRnngY2XNcDoridv0md5WP0dKCEqoPGnKI",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/vacations-admin/get_all",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"vacations-admin",
-						"get_all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "get vacations user",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
