@@ -30,7 +30,7 @@ RUN rm -rf *
 
 # now we copy the react build products from the 1st stage, to here
 COPY --from=builder /app/build .
-# COPY nginx.conf ../sites-available/
+COPY nginx.conf ../sites-available/
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 
