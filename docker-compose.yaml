@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   database:
+    # container_name - optional
     container_name: project3-database
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
