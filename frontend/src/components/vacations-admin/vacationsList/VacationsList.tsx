@@ -32,7 +32,6 @@ function VacationsList(): JSX.Element {
 
 
         const unsubscribe = vacationsStore.subscribe(() => {
-            console.log("unsubscribe VacationsList")
             setVacations([...vacationsStore.getState().vacations])
         })
 

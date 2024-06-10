@@ -51,7 +51,6 @@ function Login(): JSX.Element {
         }
 
         const unsubscribe = authStore.subscribe(() => {
-            console.log("unsubscribe Login")
             const token = authStore.getState().token;
             if (token) {
                 const user = jwtDecode<{ user: User }>(token).user;

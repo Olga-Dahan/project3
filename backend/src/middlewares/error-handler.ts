@@ -3,7 +3,7 @@ import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import logger from "../utils/logger";
 
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
-    console.log(err.message);
+    // console.log(err.message);
 
     logger.error(err.message);
 

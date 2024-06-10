@@ -34,7 +34,6 @@ function AuthMenu(): JSX.Element {
         }
 
         const unsubscribe = authStore.subscribe(() => {
-            console.log("unsubscribe AuthMenu")
             const token = authStore.getState().token;
             if (token) {
                 const user = jwtDecode<{ user: User }>(token).user;

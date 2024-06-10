@@ -31,7 +31,7 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
         case AuthActionType.Login: // payload here is the token
             newState.token = action.payload as string;
             localStorage.setItem('olga/token', newState.token);
-            console.log(`our jwt is ${action.payload}`)
+            // console.log(`our jwt is ${action.payload}`)
             break;
         case AuthActionType.Logout:
             newState.token = '';

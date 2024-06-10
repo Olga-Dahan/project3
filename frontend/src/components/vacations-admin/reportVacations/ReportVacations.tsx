@@ -49,7 +49,6 @@ function ReportVacations(): JSX.Element {
 
 
         const unsubscribe = authStore.subscribe(() => {
-            console.log("unsubscribeAuth user")
 
             const token = authStore.getState().token;
             if (token) {
