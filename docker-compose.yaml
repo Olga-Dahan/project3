@@ -3,14 +3,13 @@ version: '3.8'
 services:
   database:
     # container_name - optional
-    container_name: project3-database
+    # container_name: project3-database
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
       - MYSQL_TCP_PORT=3306
       - MYSQL_DATABASE=project3
     ports:
       - 3306:3306
-    # image: olgadahan/project3-database:1.0
     build: ./database 
     volumes:
       - project3-database:/var/lib/mysql
@@ -30,6 +29,7 @@ services:
     ports:
       - 3000:80
     build: ./frontend
+
 
 volumes:
   project3-database:

@@ -76,3 +76,7 @@
 {"level":"info","message":"project3 is running on localhost:8080"}
 {"level":"info","message":"project3 is running on localhost:8080"}
 {"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"error","message":{"code":"ECONNREFUSED","fatal":true}}
+{"level":"error","message":"Unauthorized"}
+{"level":"error","message":"Unauthorized"}

@@ -4,7 +4,7 @@ import { createStore } from "redux";
 export class AuthState {
     public token: string = '';
     public constructor() {
-        this.token = localStorage.getItem('token') || '';
+        this.token = localStorage.getItem('olga/token') || '';
     }
 }
 
@@ -30,12 +30,12 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
         case AuthActionType.Signup: // payload here is the token
         case AuthActionType.Login: // payload here is the token
             newState.token = action.payload as string;
-            localStorage.setItem('token', newState.token);
+            localStorage.setItem('olga/token', newState.token);
             console.log(`our jwt is ${action.payload}`)
             break;
         case AuthActionType.Logout:
             newState.token = '';
-            localStorage.removeItem('token');
+            localStorage.removeItem('olga/token');
             break;
 
     }

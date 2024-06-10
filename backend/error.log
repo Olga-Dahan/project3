@@ -11,3 +11,6 @@
 {"level":"error","message":"You are already signed up!"}
 {"level":"error","message":"Unauthorized"}
 {"level":"error","message":"Unauthorized"}
+{"level":"error","message":{"code":"ECONNREFUSED","fatal":true}}
+{"level":"error","message":"Unauthorized"}
+{"level":"error","message":"Unauthorized"}
