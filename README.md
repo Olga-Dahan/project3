@@ -6,3 +6,11 @@ and the number of followers.
 Database: mySQL
 Server-side: Node.js + Express
 Client-side: React
+
+Runs on ports: 
+               Front: "3000:3000"
+               Back: "8080:8080"
+               DB: "3306:3306"
+
+docker compose up -d --build         
+http://localhost:3000
