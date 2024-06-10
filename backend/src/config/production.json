@@ -3,11 +3,11 @@
         "port": 80
     },
     "mysql": {
-        "host": "localhost",
-        "user": "root",
+        "host": "",
+        "user": "",
         "password": "",
-        "database": "project3",
-        "port": 3306,
+        "database": "",
+        "port": 3307,
         "connectionLimit": 10
     }
 
