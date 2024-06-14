@@ -7,6 +7,7 @@ import notify from "../../../services/Notify";
 import { useEffect, useState } from "react";
 import { authStore } from "../../../redux/AuthState";
 import { jwtDecode } from "jwt-decode";
+import { format } from "date-fns";
 
 function AddVacation(): JSX.Element {
 
@@ -27,6 +28,8 @@ function AddVacation(): JSX.Element {
     }
 
     const [endDate, setEndDate] = useState<Date>(new Date());
+    const [startDate, setStartDate] = useState<Date>(new Date());
+
 
     function ImageWatched({ control }: { control: Control<Vacation> }) {
         const imageSrc = useWatch({
@@ -44,7 +47,8 @@ function AddVacation(): JSX.Element {
     }
 
     useEffect(() => {
-        
+        setStartDate(format(startDate, "yyyy-MM-dd") as unknown as Date)
+
         const token = authStore.getState().token;
         if (token) {
             const user_response = jwtDecode<{ user: User }>(token).user;
@@ -80,22 +84,22 @@ function AddVacation(): JSX.Element {
 
         unsubscribe();
     }, []);
-    
+
 
     async function submitVacationData(vacation: Vacation) {
-            try {
-                vacation.image = (vacation.image as unknown as FileList)[0];
-                const addedVacation = await vacationsService.addVacation(vacation);
+        try {
+            vacation.image = (vacation.image as unknown as FileList)[0];
+            const addedVacation = await vacationsService.addVacation(vacation);
 
-                notify.success(`added a new vacation with id ${addedVacation.id}`);
+            notify.success(`added a new vacation with id ${addedVacation.id}`);
 
-                navigate('/vacations-admin');
+            navigate('/vacations-admin');
 
 
-            } catch (err) {
-                notify.error(err);
-            }
+        } catch (err) {
+            notify.error(err);
         }
+    }
 
     return (
         <div className="AddVacation">
@@ -121,7 +125,6 @@ function AddVacation(): JSX.Element {
                     }
                 })} />
                 <span className="error">{formState.errors.description?.message}</span>
-                <span className="error">{formState.errors.description?.message}</span>
                 <br></br>
                 <br></br>
 
@@ -131,8 +134,14 @@ function AddVacation(): JSX.Element {
                         value: true,
                         message: 'start date is a required field'
                     },
-                    onChange: (e) => {setEndDate(e.target.value)}
-                })} />
+                    min: {
+                        value: startDate as unknown as string,
+                        message: 'start date have to be later today'
+                    },
+                    onChange: (e) => { setEndDate(e.target.value) },
+                })}
+                    min={startDate as unknown as string}
+                />
                 <span className="error">{formState.errors.startDate?.message}</span>
                 <br></br>
                 <br></br>
@@ -147,8 +156,8 @@ function AddVacation(): JSX.Element {
                         value: endDate as unknown as string,
                         message: 'end date have to be later start date'
                     }
-                })} 
-                min={endDate as unknown as string}
+                })}
+                    min={endDate as unknown as string}
                 />
                 <span className="error">{formState.errors.endDate?.message}</span>
                 <br></br>

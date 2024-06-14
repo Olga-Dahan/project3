@@ -22,7 +22,6 @@ class Auth {
     public async login(login: Login): Promise<string> {
         const response = await axios.post<{jwt: string}>(appConfig.loginUrl, login);
         const token = response.data.jwt;
-
         const action: AuthAction = {
             type: AuthActionType.Login,
             payload: token

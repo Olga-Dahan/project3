@@ -15,3 +15,7 @@
 {"level":"error","message":"Unauthorized"}
 {"level":"error","message":"Unauthorized"}
 {"level":"error","message":"jwt expired"}
+{"level":"error","message":"did not find such a combination of username and password"}
+{"level":"error","message":"You can't select past date!"}
+{"level":"error","message":"You can't select past date!"}
+{"level":"error","message":"\"destination\" length must be at least 4 characters long"}

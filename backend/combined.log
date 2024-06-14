@@ -84,3 +84,14 @@
 {"level":"info","message":"project3 is running on localhost:8080"}
 {"level":"error","message":"jwt expired"}
 {"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"error","message":"did not find such a combination of username and password"}
+{"level":"info","message":"project3 is running on localhost:8080"}
+{"level":"error","message":"You can't select past date!"}
+{"level":"error","message":"You can't select past date!"}
+{"level":"error","message":"\"destination\" length must be at least 4 characters long"}

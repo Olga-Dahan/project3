@@ -29,20 +29,26 @@ export function vacationsReducer(currentState = new VacationsState(), action: Va
     switch (action.type) {
         case VacationsActionType.SetVacations: // payload here will be an array of vacations: Vacation[]
             newState.vacations = action.payload as Vacation_admin[];
+            // newState.vacations.sort((a,b) => (a.startDate! > b.startDate!) ? 1 : ((b.startDate! > a.startDate!) ? -1 : 0))
+
             break;
         case VacationsActionType.AddVacation: // payload here will be a single vacation: Vacation
             const singleVacation = action.payload as Vacation_admin;
             newState.vacations.push(singleVacation);
+            newState.vacations.sort((a,b) => (a.startDate! > b.startDate!) ? 1 : ((b.startDate! > a.startDate!) ? -1 : 0))
+
             break;
         case VacationsActionType.DeleteVacation: // payload here will be vacation id: number
             const vacationId = action.payload as number;
             const indexToDelete = newState.vacations.findIndex(vacation => vacation.id === vacationId);
             if (indexToDelete !== -1) newState.vacations.splice(indexToDelete, 1);
+
             break;
         case VacationsActionType.UpdateVacation: // payload here will be a single vacation: Vacation
             const vacationToUpdate = action.payload as Vacation_admin;
             const indexToUpdate = newState.vacations.findIndex(vacation => vacation.id === vacationToUpdate.id);
             if (indexToUpdate !== -1) newState.vacations[indexToUpdate] = vacationToUpdate;
+
             break;
 
     }

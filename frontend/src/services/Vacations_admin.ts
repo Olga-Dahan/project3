@@ -48,6 +48,7 @@ class Vacations {
     }
 
     public async addVacation(vacation: Vacation_admin): Promise<Vacation_admin> {
+        
         const config = {
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -57,15 +58,9 @@ class Vacations {
 
         const addedVacation = response.data;
 
-
-
-        const responseAllVacations = await axios.get<Vacation_admin[]>(appConfig.vacationsAdminUrl);
-
-        const vacations = responseAllVacations.data;
-
         const action: VacationsAction = {
-            type: VacationsActionType.SetVacations,
-            payload: vacations
+            type: VacationsActionType.AddVacation,
+            payload: addedVacation
         }
 
         vacationsStore.dispatch(action);
@@ -99,13 +94,13 @@ class Vacations {
 
         const updatedVacation = response.data;
 
-        const responseAllVacations = await axios.get<Vacation_admin[]>(appConfig.vacationsAdminUrl);
+        // const responseAllVacations = await axios.get<Vacation_admin[]>(appConfig.vacationsAdminUrl);
 
-        const vacations = responseAllVacations.data;
+        // const vacations = responseAllVacations.data;
 
         const action: VacationsAction = {
-            type: VacationsActionType.SetVacations,
-            payload: vacations
+            type: VacationsActionType.UpdateVacation,
+            payload: updatedVacation
         }
 
         vacationsStore.dispatch(action);
