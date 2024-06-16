@@ -41,7 +41,7 @@ function Vacations(): JSX.Element {
             }
         }
         else {
-            setUser({ id: "", firstName: "", lastName: "", roleId: Roles.USER })
+            // setUser({ id: "", firstName: "", lastName: "", roleId: Roles.USER })
             notify.error('You are not logged in!');
             auth.logout();
             navigate('/login');

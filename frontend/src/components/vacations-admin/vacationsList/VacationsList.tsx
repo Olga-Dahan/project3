@@ -1,4 +1,6 @@
 import Vacation from "../../../models/Vacation_admin";
+import { useNavigate } from "react-router-dom";
+import auth from "../../../services/Auth";
 import vacationsService from "../../../services/Vacations_admin";
 import useTitle from "../../../utils/useTitle";
 import VacationCard from "../vacationCard/VacationCard";
@@ -13,6 +15,8 @@ import Pagination from '@mui/material/Pagination';
 function VacationsList(): JSX.Element {
 
     useTitle('Vacations');
+    const navigate = useNavigate();
+
 
     const [vacations, setVacations] = useState<Vacation[]>([]);
     const [page, setPage] = useState<number>(1);
@@ -28,7 +32,16 @@ function VacationsList(): JSX.Element {
                 setVacations(vacationsFromServer.slice(offset, offset + appConfig.limit_pages));
                 setPageCount(Math.ceil(vacationsFromServer.length / appConfig.limit_pages));
             })
-            .catch(error => notify.error(error));
+            .catch(error => {
+                if (error.response.data === "jwt expired") {
+                    notify.error('Log in again!');
+                    auth.logout();
+                    navigate('/login');
+                    return
+                }
+                else
+                    notify.error(error)
+            });
 
 
         const unsubscribe = vacationsStore.subscribe(() => {

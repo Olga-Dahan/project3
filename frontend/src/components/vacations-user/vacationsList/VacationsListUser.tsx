@@ -57,10 +57,9 @@ function VacationsListUser(): JSX.Element {
 
         }
         else {
-            setUser({ id: "", firstName: "", lastName: "", roleId: Roles.USER })
+            // setUser({ id: "", firstName: "", lastName: "", roleId: Roles.USER })
             auth.logout();
             notify.error('You are not logged in!');
-
             navigate('/login');
             return
         }
@@ -87,7 +86,16 @@ function VacationsListUser(): JSX.Element {
                 setVacations(vacationsFromServer.slice(offset, offset + appConfig.limit_pages));
                 setPageCount(Math.ceil(vacationsFromServer.length / appConfig.limit_pages));
             })
-            .catch(error => notify.error(error));
+            .catch(error => {
+                if (error.response.data === "jwt expired") {
+                    notify.error('Log in again!');
+                    auth.logout();
+                    navigate('/login');
+                    return
+                }
+                else
+                    notify.error(error)
+            });
 
         unsubscribe()
 
@@ -107,13 +115,13 @@ function VacationsListUser(): JSX.Element {
             const vacations = await vacationsService.getAll(user!.id, checked1, checked2, checked3);
             if (vacations.length === 0) {
                 setMessage("There are no such vacations!");
-                setPageCount(0); 
+                setPageCount(0);
                 setVacations([]);
                 return;
             }
             if (page > Math.ceil(vacations.length / appConfig.limit_pages)) {
-                setPage(page-1); 
-                offset = ((page-1) - 1) * appConfig.limit_pages;
+                setPage(page - 1);
+                offset = ((page - 1) - 1) * appConfig.limit_pages;
             }
             setPageCount(Math.ceil(vacations.length / appConfig.limit_pages));
             setVacations(vacations.slice(offset, offset + appConfig.limit_pages));
@@ -142,7 +150,7 @@ function VacationsListUser(): JSX.Element {
         const vacations = await vacationsService.getAll(user!.id, !checked1, checked2, checked3);
         if (vacations.length === 0) {
             setMessage("There are no such vacations!");
-            setPageCount(0); 
+            setPageCount(0);
             setVacations([])
         }
         setPageCount(Math.ceil(vacations.length / appConfig.limit_pages));
@@ -157,7 +165,7 @@ function VacationsListUser(): JSX.Element {
         const vacations = await vacationsService.getAll(user!.id, checked1, !checked2, checked3);
         if (vacations.length === 0) {
             setMessage("There are no such vacations!");
-            setPageCount(0); 
+            setPageCount(0);
             setVacations([])
         }
         setPageCount(Math.ceil(vacations.length / appConfig.limit_pages));
@@ -172,7 +180,7 @@ function VacationsListUser(): JSX.Element {
         const vacations = await vacationsService.getAll(user!.id, checked1, checked2, !checked3);
         if (vacations.length === 0) {
             setMessage("There are no such vacations!");
-            setPageCount(0); 
+            setPageCount(0);
             setVacations([])
         }
         setPageCount(Math.ceil(vacations.length / appConfig.limit_pages));

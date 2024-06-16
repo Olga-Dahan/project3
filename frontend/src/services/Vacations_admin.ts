@@ -24,7 +24,7 @@ class Vacations {
 
             vacationsStore.dispatch(action);
         }
-
+        
         return vacations
     }
 
